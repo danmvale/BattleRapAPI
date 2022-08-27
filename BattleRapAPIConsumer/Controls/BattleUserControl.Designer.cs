@@ -69,7 +69,6 @@
             this.txtTitle.TabIndex = 1;
             this.txtTitle.Text = "Orochi vs Jhony (🥶O DIA QUE OROCHI FOI PARADO) - FINAL-#ReiDoTanque Edição 183º " +
     "da Batalha do Tanque";
-            this.ttp.SetToolTip(this.txtTitle, "Abrir vídeo");
             this.txtTitle.Click += new System.EventHandler(this.txtTitle_Click);
             // 
             // label1
