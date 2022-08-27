@@ -21,6 +21,8 @@ namespace BattleRapAPIConsumer.Models.DTOs
         {
             return new BattleInfo
             {
+                Participant1 = Participant1,
+                Participant2 = Participant2,
                 Title = VideoTitle,
                 Winner = Winner,
                 Score = $"{string.Join(" x ", Rounds.GroupBy(x => x.Winner).Select(x => x.Count()).OrderByDescending(x => x))}",

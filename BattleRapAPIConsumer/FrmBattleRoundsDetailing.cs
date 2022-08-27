@@ -1,4 +1,5 @@
 ﻿using BattleRapAPIConsumer.Models;
+using BattleRapAPIConsumer.Utilities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,15 +14,34 @@ namespace BattleRapAPIConsumer
 {
     public partial class FrmBattleRoundsDetailing : Form
     {
-        List<BattleRoundInfo> _rounds;
+        BattleInfo _battleInfo;
 
-        public FrmBattleRoundsDetailing(List<BattleRoundInfo> rounds)
+        public FrmBattleRoundsDetailing(BattleInfo battleInfo)
         {
-            _rounds = rounds;
-            InitializeComponent();
+            try
+            {
+                _battleInfo = battleInfo;
+                InitializeComponent();
 
-            foreach (var round in rounds)
-                flowLayoutPanel1.Controls.Add(new Label() { Text = $"Round {round.RoundNumber}: {round.Winner}" });
+                MaximumSize = MinimumSize = Size;
+
+                txtParticipants.Text = $"{battleInfo.Participant1} x {battleInfo.Participant2}";
+
+                battleInfo.Rounds.ForEach(x =>
+                {
+                    flpRounds.Controls.Add(new Label()
+                    {
+                        Text = $"Round {x.RoundNumber}: {x.Winner}",
+                        Width = flpRounds.Width
+                    });
+                });
+            }
+
+            catch (Exception ex)
+            {
+                Util.ShowError(ex);
+                Close();
+            }
         }
     }
 }

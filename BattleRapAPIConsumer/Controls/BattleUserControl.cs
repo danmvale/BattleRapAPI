@@ -79,7 +79,7 @@ namespace BattleRapAPIConsumer.Controls
 
         private void btnDetailRounds_Click(object sender, EventArgs e)
         {
-            new FrmBattleRoundsDetailing(_battleInfo.Rounds).ShowDialog();
+            new FrmBattleRoundsDetailing(_battleInfo).ShowDialog();
         }
     }
 }

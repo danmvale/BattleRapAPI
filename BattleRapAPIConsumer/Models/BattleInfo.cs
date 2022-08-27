@@ -8,6 +8,8 @@ namespace BattleRapAPIConsumer.Models
 {
     public class BattleInfo
     {
+        public string Participant1 { get; set; }
+        public string Participant2 { get; set; }
         public string Title { get; set; }
         public string VideoUrl { get; set; }
         public string VideoThumbnailUrl { get; set; }

@@ -65,6 +65,46 @@ namespace BattleRapAPI.Controllers
                 }));
         }
 
+        //[HttpGet("mcs/score", Name = "GetScoreBetweenTwoMcs")]
+        //public async Task<ActionResult<List<object>>> GetScore(string mc1, string mc2)
+        //{
+        //    var battles = _battleRepository.Battles
+        //        .Where(x =>
+        //            (x.Participant1.Equals(mc1, StringComparison.InvariantCultureIgnoreCase) &&
+        //                x.Participant2.Equals(mc2, StringComparison.InvariantCultureIgnoreCase) ||
+        //            (x.Participant1.Equals(mc2, StringComparison.InvariantCultureIgnoreCase) &&
+        //                x.Participant2.Equals(mc1, StringComparison.InvariantCultureIgnoreCase))))
+        //        .ToList();
+
+        //    if (battles.Count == 0)
+        //        return BadRequest("Não foram encontradas batalhas entre esses dois MC's");
+
+        //    var mc1Wins = battles
+        //        .Where(x => x.Winner.Equals(mc1, StringComparison.InvariantCultureIgnoreCase))
+        //        .Count();
+        //    var mc2Wins = battles
+        //        .Where(x => x.Winner.Equals(mc2, StringComparison.InvariantCultureIgnoreCase))
+        //        .Count();
+
+        //    if (mc2Wins > mc1Wins)
+        //    {
+        //        var auxMc = mc1;
+        //        var auxMcWins = mc1Wins;
+
+        //        mc1 = mc2;
+        //        mc1Wins = mc2Wins;
+
+        //        mc2 = auxMc;
+        //        mc2Wins = auxMcWins;
+        //    }
+
+        //    return Ok(new Dictionary<string, string>
+        //    {
+        //        { mc1, mc1Wins.ToString() },
+        //        { mc2, mc2Wins.ToString() }
+        //    });
+        //}
+
         [HttpGet("mcs/score", Name = "GetScoreBetweenTwoMcs")]
         public async Task<ActionResult<List<object>>> GetScore(string mc1, string mc2)
         {
@@ -86,22 +126,10 @@ namespace BattleRapAPI.Controllers
                 .Where(x => x.Winner.Equals(mc2, StringComparison.InvariantCultureIgnoreCase))
                 .Count();
 
-            if (mc2Wins > mc1Wins)
-            {
-                var auxMc = mc1;
-                var auxMcWins = mc1Wins;
-
-                mc1 = mc2;
-                mc1Wins = mc2Wins;
-
-                mc2 = auxMc;
-                mc2Wins = auxMcWins;
-            }
-
             return Ok(new Dictionary<string, string>
             {
-                { mc1, mc1Wins.ToString() },
-                { mc2, mc2Wins.ToString() }
+                { "mc1", mc1Wins.ToString() },
+                { "mc2", mc2Wins.ToString() }
             });
         }
 
